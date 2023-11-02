@@ -1,7 +1,6 @@
 export interface CardProps {
   id: number;
   title: string;
-  description: string;
   completed: boolean;
   onDelete: () => void;
   onToggleCompleted: () => void;
@@ -10,7 +9,6 @@ export interface CardProps {
   onSave: (
     id: number,
     updatedTitle: string,
-    updatedDescription: string
   ) => void;
 }
 

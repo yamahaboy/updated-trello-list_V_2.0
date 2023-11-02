@@ -9,29 +9,28 @@ import {
   CardTitle,
   Strong,
   CrossLine,
-  CardDescription,
   ButtonBlock,
   DisplayButton,
   StyledInput,
 } from "./styles";
 
-export const Card: React.FC<CardProps> = ({
-  id,
+ const Card: React.FC<CardProps> = (props: CardProps) => {
+const { id,
   title,
-  description,
   completed,
   onDelete,
   onToggleCompleted,
   onEdit,
-  onSave,
-}: CardProps) => {
+  onSave,} = props;
+
   const [updatedTitle, setUpdatedTitle] = useState(title);
-  const [updatedDescription, setUpdatedDescription] = useState(description);
   const [isEditing, setIsEditing] = useState(false);
 
   const handleCheckboxChange = () => {
     onToggleCompleted();
   };
+
+  console.log("Card")
 
   const handleEditClick = () => {
     onEdit();
@@ -39,17 +38,17 @@ export const Card: React.FC<CardProps> = ({
   };
 
   const handleSaveClick = () => {
-    onSave(id, updatedTitle, updatedDescription);
+    onSave(id, updatedTitle);
     setIsEditing(false);
   };
 
   const handleCancelClick = () => {
     setIsEditing(false);
     setUpdatedTitle("");
-    setUpdatedDescription("");
   };
 
   return (
+   
     <StyledCard>
       <CardTitle>
         <Strong>Title: </Strong>{" "}
@@ -65,20 +64,6 @@ export const Card: React.FC<CardProps> = ({
           </CrossLine>
         )}
       </CardTitle>
-      <CardDescription>
-        <Strong>Description: </Strong>
-        {isEditing ? (
-          <StyledInput
-            type="text"
-            value={updatedDescription}
-            onChange={(e) => setUpdatedDescription(e.target.value)}
-          />
-        ) : (
-          <CrossLine completed={completed} description={description}>
-            {description}
-          </CrossLine>
-        )}
-      </CardDescription>
       <ButtonBlock>
         <Checkbox checked={completed} onChange={handleCheckboxChange} />
         {isEditing ? (
@@ -104,3 +89,5 @@ export const Card: React.FC<CardProps> = ({
     </StyledCard>
   );
 };
+
+export default Card

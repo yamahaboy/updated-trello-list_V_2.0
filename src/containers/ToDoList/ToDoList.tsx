@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "../Card/Card";
+import Card from "../Card/Card";
 
 import { getToDos } from "../../api/services/toDoService/service";
 
@@ -37,27 +37,27 @@ export const ToDoList: React.FC = () => {
     dispatch(setToDo(updatedToDoData));
   };
 
-  // const editHandler = (idToEdit: number) => {
-  //   setEditItemId(idToEdit);
-  // };
+  const editHandler = (idToEdit: number) => {
+    setEditItemId(idToEdit);
+  };
 
-  // const saveHandler = (
-  //   idToSave: number,
-  //   updatedTitle: string,
-  //   updatedDescription: string
-  // ) => {
-  //   const updatedToDoData = toDoData.map((todo) =>
-  //     todo.id === idToSave
-  //       ? { ...todo, title: updatedTitle, description: updatedDescription }
-  //       : todo
-  //   );
-  //   setToDoData(updatedToDoData);
-  //   setEditItemId(null);
-  // };
+  const saveHandler = (
+    idToSave: number,
+    updatedTitle: string,
+  ) => {
+    const updatedToDoData = cardDates.map((todo) =>
+      todo.id === idToSave
+        ? { ...todo, title: updatedTitle }
+        : todo
+    );
+    setToDo(updatedToDoData);
+    setEditItemId(null);
+  };
 
   useEffect(() => {
     async function fetchData() {
       const data = await getToDos();
+      console.log(data, "getTodos")
       dispatch(setToDo(data));
     }
 
@@ -72,18 +72,17 @@ export const ToDoList: React.FC = () => {
           Restore Last
         </RestoreButton>
       </Container>
-      {cardDates.map(({ userId, id, title, description, completed }) => (
+      {cardDates && cardDates.map(({ userId, id, title, completed }) => (
         <Card
-          key={id}
+          key={userId}
           id={id}
           title={title}
-          description={description}
           completed={completed}
           onDelete={() => deleteHandler(id)}
           onToggleCompleted={() => toggleCompleted(id)}
-          // onEdit={() => editHandler(id)}
-          // isEditing={id === editItemId}
-          // onSave={saveHandler}
+          onEdit={() => editHandler(id)}
+          isEditing={id === editItemId}
+          onSave={saveHandler}
         />
       ))}
     </TodoList>

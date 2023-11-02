@@ -1,12 +1,10 @@
 // import React, { BaseSyntheticEvent, useState } from "react";
 // // import { InputText } from "../../components/InputText/InputText";
 // import { Button } from "../../components/Button/Button";
-// import { useToDoContext } from "../../store/ToDoContext";
 
 // import { Form, FormTitle, Container, Error } from "./styles";
 
 // export const ToDoForm: React.FC = () => {
-//   const { setToDoData } = useToDoContext();
 //   const [title, setTitle] = useState<string>("");
 //   const [description, setDescription] = useState<string>("");
 //   const [titleError, setTitleError] = useState<string | null>(null);

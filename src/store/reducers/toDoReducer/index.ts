@@ -5,13 +5,11 @@ import { ToDoReducerEnum } from "./ActionsType";
 type ToDoReducerType = {
   toDo: IToDoForm[];
   lastDeletedCard: IToDoForm | null;
-  // cardEdit: IToDoForm[] | null;
 };
 
 const defaultState: ToDoReducerType = {
   toDo: [],
   lastDeletedCard: null,
-  // cardEdit: null,
 };
 
 const todoReducer: Reducer<ToDoReducerType> = (
@@ -23,8 +21,6 @@ const todoReducer: Reducer<ToDoReducerType> = (
       return { ...state, toDo: action.toDo };
     case ToDoReducerEnum.Set_Last_Deleted:
       return { ...state, lastDeletedCard: action.lastDeleted };
-    // case ToDoReducerEnum.Set_Edit_Card:
-    //   return { ...state, cardEdit: action.editCard };
     default:
       return { ...state };
   }

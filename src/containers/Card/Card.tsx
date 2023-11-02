@@ -14,14 +14,9 @@ import {
   StyledInput,
 } from "./styles";
 
- const Card: React.FC<CardProps> = (props: CardProps) => {
-const { id,
-  title,
-  completed,
-  onDelete,
-  onToggleCompleted,
-  onEdit,
-  onSave,} = props;
+const Card: React.FC<CardProps> = (props: CardProps) => {
+  const { id, title, completed, onDelete, onToggleCompleted, onEdit, onSave } =
+    props;
 
   const [updatedTitle, setUpdatedTitle] = useState(title);
   const [isEditing, setIsEditing] = useState(false);
@@ -30,7 +25,7 @@ const { id,
     onToggleCompleted();
   };
 
-  console.log("Card")
+  console.log("Card Card Card Card");
 
   const handleEditClick = () => {
     onEdit();
@@ -48,7 +43,6 @@ const { id,
   };
 
   return (
-   
     <StyledCard>
       <CardTitle>
         <Strong>Title: </Strong>{" "}
@@ -90,4 +84,4 @@ const { id,
   );
 };
 
-export default Card
+export default Card;

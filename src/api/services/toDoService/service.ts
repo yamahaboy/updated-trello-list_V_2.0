@@ -5,7 +5,7 @@ export const getToDos = async (): Promise<IToDoForm[]> => {
   console.log(response, "response")
   const data = await response.json();
   return data.map((props: IToDoForm) => ({
-    userId: props.userId, 
+    // userId: props.userId, 
     id: props.id,
     title: props.title,
     completed: props.completed

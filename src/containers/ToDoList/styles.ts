@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import { Button } from "../../components/Button/Button";
 
 export const TodoList = styled.div`
   width: 40rem;

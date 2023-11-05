@@ -13,19 +13,20 @@ import {
   DisplayButton,
   StyledInput,
 } from "./styles";
+import UserSelect from "../UsersSelect/UsersSelect";
+import { useAppDispatch } from "../../store/reducers/store";
+import { setUserId } from "../../store/reducers/toDoReducer/Actions";
 
 const Card: React.FC<CardProps> = (props: CardProps) => {
-  const { id, title, completed, onDelete, onToggleCompleted, onEdit, onSave } =
+  const {  userId, id, title, completed, onDelete, onToggleCompleted, onEdit, onSave } =
     props;
-
+    const dispatch = useAppDispatch();
   const [updatedTitle, setUpdatedTitle] = useState(title);
   const [isEditing, setIsEditing] = useState(false);
-
   const handleCheckboxChange = () => {
     onToggleCompleted();
   };
 
-  console.log("Card Card Card Card");
 
   const handleEditClick = () => {
     onEdit();
@@ -40,6 +41,11 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
   const handleCancelClick = () => {
     setIsEditing(false);
     setUpdatedTitle("");
+  };
+
+
+  const handleUserSelectChange = (selectedUserId: number) => {
+    dispatch(setUserId(selectedUserId))
   };
 
   return (
@@ -60,7 +66,12 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
       </CardTitle>
       <ButtonBlock>
         <Checkbox checked={completed} onChange={handleCheckboxChange} />
-        {isEditing ? (
+        <UserSelect
+          selectedUser={userId}
+          onSelectChange={handleUserSelectChange}
+          
+        />  
+              {isEditing ? (
           <ButtonBlock>
             <Button type="button" onClick={handleSaveClick}>
               Save
@@ -70,7 +81,7 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
             </Button>
           </ButtonBlock>
         ) : (
-          <Button type="button" onClick={handleEditClick}>
+          <Button type="button" onClick={handleEditClick} >
             Edit
           </Button>
         )}

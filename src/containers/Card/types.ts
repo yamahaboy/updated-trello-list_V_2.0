@@ -1,4 +1,5 @@
 export interface CardProps {
+  userId:number;
   id: number;
   title: string;
   completed: boolean;

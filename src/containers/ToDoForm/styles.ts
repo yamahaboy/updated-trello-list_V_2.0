@@ -3,7 +3,9 @@ import styled from "styled-components";
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  width: 20rem;
+  justify-content: center;
+  align-items:center;
+  width: 40rem;
   height: auto;
   margin-top: 2rem;
   padding: 1rem;
@@ -21,9 +23,22 @@ export const FormTitle = styled.div`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 35rem;
   gap: 10px;
 `;
 
 export const Error = styled.div`
   color: red;
 `;
+
+
+export const StyledFormInput = styled.input`
+  resize: none;
+  height: 2rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #fff;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 1rem;`

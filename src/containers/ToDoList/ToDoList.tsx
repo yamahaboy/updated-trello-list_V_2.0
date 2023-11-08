@@ -12,10 +12,13 @@ import { Button } from "../../components/Button/Button";
 
 export const ToDoList: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { toDo } = useAppSelector((state) => state.todoReducer);
+  const { toDo, userfilter } = useAppSelector((state) => state.todoReducer);
   const lastCard = useAppSelector((state) => state.todoReducer.lastDeletedCard);
   const [editItemId, setEditItemId] = useState<number | null>(null);
+  
   const [showUnassigned, setShowUnassigned] = useState(false);
+
+  const filteredToDo = toDo.filter((task) => userfilter === null || task.userId === userfilter);
 
   const toggleShowUnassigned = () => {
     setShowUnassigned((prev) => !prev);
@@ -57,6 +60,13 @@ export const ToDoList: React.FC = () => {
     setEditItemId(null);
   };
 
+  const handleUserIdChange = (idToUpdate: number, newUserId: number) => {
+    const updatedToDoData = toDo.map((todo) =>
+      todo.id === idToUpdate ? { ...todo, userId: newUserId } : todo
+    );
+    dispatch(setToDo(updatedToDoData));
+  };
+
   useEffect(() => {
     dispatch(getToDosAndUsersToStore());
   }, [dispatch]);
@@ -72,9 +82,9 @@ export const ToDoList: React.FC = () => {
           </Button>
         </ButtonBlock>
       </Container>
-      {toDo &&
-        toDo
-          .filter(({ userId }) => (showUnassigned ? userId === null : true))
+      {filteredToDo &&
+        filteredToDo
+          .filter(({ userId }) => (showUnassigned ? userId === 0 : true))
           .map(({ userId, id, title, completed }) => (
             <Card
               key={id}
@@ -87,6 +97,7 @@ export const ToDoList: React.FC = () => {
               onEdit={() => editHandler(id)}
               isEditing={id === editItemId}
               onSave={saveHandler}
+              onUserIdChange={(newUserId) => handleUserIdChange(id, newUserId)}
             />
           ))}
     </TodoList>

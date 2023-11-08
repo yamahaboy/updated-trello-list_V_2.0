@@ -10,7 +10,10 @@ type UserSelectProps = {
   onSelectChange: (selectedUserId: number) => void;
 };
 
-const UserSelect: React.FC<UserSelectProps> = ({ selectedUser, onSelectChange }) => {
+const UserSelect: React.FC<UserSelectProps> = ({
+  selectedUser,
+  onSelectChange,
+}) => {
   const { users } = useAppSelector((state) => state.todoReducer);
 
   const handleUserChange = (event: SelectChangeEvent<number>) => {
@@ -19,7 +22,11 @@ const UserSelect: React.FC<UserSelectProps> = ({ selectedUser, onSelectChange })
 
   return (
     <FormControl>
-      <Select sx={{ width: "12rem" }} value={selectedUser} onChange={handleUserChange}>
+      <Select
+        sx={{ width: "12rem" }}
+        value={selectedUser}
+        onChange={handleUserChange}
+      >
         <MenuItem value={0}>None</MenuItem>
         {users.map((user) => (
           <MenuItem key={user.id} value={user.id}>

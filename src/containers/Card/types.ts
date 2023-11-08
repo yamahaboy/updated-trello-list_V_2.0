@@ -1,5 +1,5 @@
 export interface CardProps {
-  userId:number;
+  userId: number;
   id: number;
   title: string;
   completed: boolean;
@@ -7,10 +7,8 @@ export interface CardProps {
   onToggleCompleted: () => void;
   onEdit: () => void;
   isEditing: boolean;
-  onSave: (
-    id: number,
-    updatedTitle: string,
-  ) => void;
+  onSave: (id: number, updatedTitle: string) => void;
+  onUserIdChange: (id: number, newUserId: number) => void;
 }
 
 export interface CrossLineProps {

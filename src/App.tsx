@@ -1,17 +1,7 @@
-import { ToDoForm } from "./containers/ToDoForm/ToDoForm";
-import { ToDoList } from "./containers/ToDoList/ToDoList";
-
-import { StyledApp, Container } from "./styles/styles";
+import ToDoProj from "./containers/ToDoProj/ToDoProj";
 
 function App() {
-  return (
-    <StyledApp>
-      <Container>
-        <ToDoForm />
-        <ToDoList />
-      </Container>
-    </StyledApp>
-  );
+  return <ToDoProj />;
 }
 
 export default App;

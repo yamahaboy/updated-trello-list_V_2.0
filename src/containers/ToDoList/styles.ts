@@ -3,11 +3,12 @@ import styled from "styled-components";
 
 export const TodoList = styled.div`
   width: 40rem;
-  height: auto;
+  height: 35rem;
   padding: 1rem;
   border: 1px solid gray;
   border-radius: 10px;
   background-color: rgb(207, 204, 204, 0.3);
+  overflow: auto;
 `;
 export const Container = styled.div`
   display: flex;

@@ -18,15 +18,22 @@ import { useAppDispatch } from "../../store/reducers/store";
 import { setUserId } from "../../store/reducers/toDoReducer/Actions";
 
 const Card: React.FC<CardProps> = (props: CardProps) => {
-  const {  userId, id, title, completed, onDelete, onToggleCompleted, onEdit, onSave } =
-    props;
-    const dispatch = useAppDispatch();
+  const {
+    userId,
+    id,
+    title,
+    completed,
+    onDelete,
+    onToggleCompleted,
+    onEdit,
+    onSave,
+  } = props;
+  const dispatch = useAppDispatch();
   const [updatedTitle, setUpdatedTitle] = useState(title);
   const [isEditing, setIsEditing] = useState(false);
   const handleCheckboxChange = () => {
     onToggleCompleted();
   };
-
 
   const handleEditClick = () => {
     onEdit();
@@ -43,15 +50,17 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
     setUpdatedTitle("");
   };
 
-
-  const handleUserSelectChange = (selectedUserId: number) => {
-    dispatch(setUserId(selectedUserId))
+  const handleUserSelectChange = (
+    selectedUserId: number,
+    taskIdToUpdate: number
+  ) => {
+    dispatch(setUserId(selectedUserId, taskIdToUpdate));
   };
 
   return (
     <StyledCard>
       <CardTitle>
-        <Strong>Title: </Strong>{" "}
+        <Strong>Title: </Strong>
         {isEditing ? (
           <StyledInput
             type="text"
@@ -68,10 +77,11 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
         <Checkbox checked={completed} onChange={handleCheckboxChange} />
         <UserSelect
           selectedUser={userId}
-          onSelectChange={handleUserSelectChange}
-          
-        />  
-              {isEditing ? (
+          onSelectChange={(newSelectedUserId) =>
+            handleUserSelectChange(newSelectedUserId, id)
+          }
+        />
+        {isEditing ? (
           <ButtonBlock>
             <Button type="button" onClick={handleSaveClick}>
               Save
@@ -81,7 +91,7 @@ const Card: React.FC<CardProps> = (props: CardProps) => {
             </Button>
           </ButtonBlock>
         ) : (
-          <Button type="button" onClick={handleEditClick} >
+          <Button type="button" onClick={handleEditClick}>
             Edit
           </Button>
         )}

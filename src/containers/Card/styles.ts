@@ -32,21 +32,7 @@ export const CrossLine = styled.span<CrossLineProps>`
   color: ${({ completed }) => (completed ? "red" : "black")};
 `;
 
-export const CardDescription = styled.div`
-  display: flex;
-  align-items: left;
-  flex-direction: column;
-  resize: none;
-  height: auto;
-  border-radius: 5px;
-  border: none;
-  background-color: #fff;
-  color: rgb(74, 71, 71);
-  margin-bottom: 10px;
-  padding: 10px;
-  width: 100%;
-  font-size: 1rem;
-`;
+
 
 export const ButtonBlock = styled.div`
   display: flex;

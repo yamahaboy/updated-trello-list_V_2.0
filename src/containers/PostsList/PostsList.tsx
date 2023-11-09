@@ -6,16 +6,12 @@ import { PostItemStyles, PostListStyles, Title } from "./styles";
 import ModalWindowOfComments from "../ModalWindowOfComments/ModalWindowOfComments";
 
 const PostsList: React.FC = () => {
-  const { posts, comments, users, inputData } = useAppSelector(
+  const { posts, comments, users, inputData, userfilter } = useAppSelector(
     (state) => state.todoReducer
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
   const [selectedUserName, setSelectedUserName] = useState<string>("");
-
-  const filteredPosts = posts.filter((post) =>
-    post.title.toLowerCase().includes(inputData?.toLowerCase() || "")
-  );
 
   const getUserByPostId = (postId: number) => {
     if (postId <= 10) {
@@ -35,6 +31,22 @@ const PostsList: React.FC = () => {
     }
   };
 
+  const filteredPostsWithUserIds = posts
+    .map((post) => {
+      const user = getUserByPostId(post.id);
+      const userId = user ? user.id : null;
+
+      return {
+        ...post,
+        userId,
+      };
+    })
+    .filter(
+      (post) =>
+        (userfilter === null || post.userId === userfilter) &&
+        post.title.toLowerCase().includes(inputData?.toLowerCase() || "")
+    );
+
   const handleClickCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -45,7 +57,7 @@ const PostsList: React.FC = () => {
         List of Posts
       </Typography>
 
-      {filteredPosts.map((post) => (
+      {filteredPostsWithUserIds.map((post) => (
         <ListItem key={post.id} sx={PostItemStyles}>
           <Title>
             <Strong>Title: </Strong>

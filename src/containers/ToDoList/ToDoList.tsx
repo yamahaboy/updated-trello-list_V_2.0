@@ -12,16 +12,18 @@ import { Button } from "../../components/Button/Button";
 
 export const ToDoList: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { toDo, userfilter, inputData } = useAppSelector((state) => state.todoReducer);
+  const { toDo, userfilter, inputData } = useAppSelector(
+    (state) => state.todoReducer
+  );
   const lastCard = useAppSelector((state) => state.todoReducer.lastDeletedCard);
   const [editItemId, setEditItemId] = useState<number | null>(null);
-  
+
   const [showUnassigned, setShowUnassigned] = useState(false);
 
-  // const filteredToDo = toDo.filter((task) => userfilter === null || task.userId === userfilter);
-  const filteredToDo = toDo.filter((task) =>
-    (userfilter === null || task.userId === userfilter) &&
-    task.title.toLowerCase().includes(inputData?.toLowerCase() || '')
+  const filteredToDo = toDo.filter(
+    (task) =>
+      (userfilter === null || task.userId === userfilter) &&
+      task.title.toLowerCase().includes(inputData?.toLowerCase() || "")
   );
   const toggleShowUnassigned = () => {
     setShowUnassigned((prev) => !prev);

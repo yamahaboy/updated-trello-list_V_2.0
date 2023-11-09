@@ -4,6 +4,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { useAppSelector } from "../../store/reducers/store";
 import { SelectChangeEvent } from "@mui/material/Select";
+import Avatar from "./Avatar/Avatar";
+import { Box } from "@mui/material";
 
 type UserSelectProps = {
   selectedUser: number;
@@ -23,14 +25,17 @@ const UserSelect: React.FC<UserSelectProps> = ({
   return (
     <FormControl>
       <Select
-        sx={{ width: "12rem" }}
+        sx={{ width: "15rem" }}
         value={selectedUser}
         onChange={handleUserChange}
       >
         <MenuItem value={0}>None</MenuItem>
         {users.map((user) => (
           <MenuItem key={user.id} value={user.id}>
-            {user.name}
+           <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Avatar id={user.id} name={user.name} /> 
+              <span style={{ marginLeft: "8px" }}>{user.name}</span>
+            </Box>
           </MenuItem>
         ))}
       </Select>

@@ -15,6 +15,7 @@ type ToDoReducerType = {
   posts: IToDoPosts[];
   comments: IToDoComments[];
   userfilter: number | null;
+  inputData: string | null;
 };
 
 const defaultState: ToDoReducerType = {
@@ -25,6 +26,7 @@ const defaultState: ToDoReducerType = {
   posts: [],
   comments: [],
   userfilter: null,
+  inputData: null,
 };
 
 const todoReducer: Reducer<ToDoReducerType> = (
@@ -62,7 +64,8 @@ const todoReducer: Reducer<ToDoReducerType> = (
       return { ...state, comments: action.commentsData };
     case ToDoReducerEnum.Set_User_Filter:
       return { ...state, userfilter: action.userFilterData };
-
+    case ToDoReducerEnum.Set_Input_Value_Filter:
+      return { ...state, inputData: action.inputValue };
     default:
       return { ...state };
   }

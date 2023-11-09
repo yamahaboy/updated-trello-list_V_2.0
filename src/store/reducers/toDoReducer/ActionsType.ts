@@ -6,5 +6,6 @@ export enum ToDoReducerEnum {
   Set_Selected_Users_Id = 'Set_Selected_Users_Id',
   Set_Posts = "Set_Posts",
   Set_Comments = "Set_Comments",
-  Set_User_Filter = "Set_User_Filter"
+  Set_User_Filter = "Set_User_Filter",
+  Set_Input_Value_Filter = "Set_Input_Value_Filter"
 }

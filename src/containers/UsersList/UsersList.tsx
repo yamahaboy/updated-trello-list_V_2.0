@@ -5,13 +5,16 @@ import { ListItemStyles, ListStyles } from "./styles";
 import { setUserFilter } from "../../store/reducers/toDoReducer/Actions";
 
 const UserList: React.FC = () => {
-  const { users } = useAppSelector((state) => state.todoReducer);
+  const { users, inputData } = useAppSelector((state) => state.todoReducer);
   const dispatch = useAppDispatch();
 
   const handleUserClick = (userId: number) => {
     dispatch(setUserFilter(userId));
   };
 
+  const filteredUsers = users.filter((user) =>
+  user.name.toLowerCase().includes(inputData?.toLowerCase() || '')
+);
   
   return (
     <List
@@ -21,7 +24,7 @@ const UserList: React.FC = () => {
         List of Users
       </Typography>
 
-      {users.map((user) => (
+      {filteredUsers.map((user) => (
         <ListItem
           key={user.id}
           value={user.id}

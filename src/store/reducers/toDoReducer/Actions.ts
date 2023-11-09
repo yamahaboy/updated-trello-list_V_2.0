@@ -49,6 +49,10 @@ export const setUserFilter = (userFilterData: number | null) => {
   return { type: ToDoReducerEnum.Set_User_Filter, userFilterData };
 };
 
+export const setInputValueFilter = (inputValue: string | null) => {
+  return { type: ToDoReducerEnum.Set_Input_Value_Filter, inputValue };
+};
+
 export const getToDosAndUsersToStore = () => {
   return async (dispatch: Dispatch<AnyAction>) => {
     const [dataTodos, dataUsers, dataPosts, dataComments] = await Promise.all([

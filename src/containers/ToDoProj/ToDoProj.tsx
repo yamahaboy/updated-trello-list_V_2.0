@@ -1,12 +1,21 @@
+import FilterTextField from "../FilterTextField/FilterTextField";
 import PostsList from "../PostsList/PostsList";
 import { ToDoForm } from "../ToDoForm/ToDoForm";
 import { ToDoList } from "../ToDoList/ToDoList";
 import UserList from "../UsersList/UsersList";
-import { StyledApp, MainContentContainer, ListsContainer } from "./styles";
+import {
+  StyledApp,
+  MainContentContainer,
+  ListsContainer,
+  FilterStylesContainer,
+} from "./styles";
 
 const ToDoProj = () => {
   return (
     <StyledApp>
+      <FilterStylesContainer>
+        <FilterTextField />
+      </FilterStylesContainer>
       <MainContentContainer>
         <ListsContainer>
           <ToDoForm />

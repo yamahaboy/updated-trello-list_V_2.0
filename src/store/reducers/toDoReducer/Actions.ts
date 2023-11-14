@@ -4,11 +4,13 @@ import {
   IToDoForm,
   IToDoPosts,
   IToDoUsers,
+  IToDoFullUsers,
 } from "../../../models/IToDoForm";
 import { ToDoReducerEnum } from "./ActionsType";
 import { AnyAction } from "redux";
 import {
   getComments,
+  getFullUsers,
   getPosts,
   getToDos,
   getUsers,
@@ -53,17 +55,23 @@ export const setInputValueFilter = (inputValue: string | null) => {
   return { type: ToDoReducerEnum.Set_Input_Value_Filter, inputValue };
 };
 
+export const setFullUsers = (fullUsersdata: IToDoFullUsers[]) => {
+  return { type: ToDoReducerEnum.Get_Full_Users, fullUsersdata };
+};
+
 export const getToDosAndUsersToStore = () => {
   return async (dispatch: Dispatch<AnyAction>) => {
-    const [dataTodos, dataUsers, dataPosts, dataComments] = await Promise.all([
+    const [dataTodos, dataUsers, dataPosts, dataComments, dataFullUsers] = await Promise.all([
       getToDos(),
       getUsers(),
       getPosts(),
       getComments(),
+      getFullUsers()
     ]);
     dispatch(setToDo(dataTodos));
     dispatch(setUsers(dataUsers));
     dispatch(setPosts(dataPosts));
     dispatch(setComments(dataComments));
+    dispatch(setFullUsers(dataFullUsers));
   };
 };

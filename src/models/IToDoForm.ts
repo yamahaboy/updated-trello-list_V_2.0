@@ -22,3 +22,25 @@ export type IToDoComments = {
   name: string;
   body: string;
 };
+
+
+export type IToDoFullUsers = {
+  id: number;
+  name: string;
+  username: string;
+  email:string;
+  address: adressType;
+  phone: string;
+  website: string;
+  company: companyType;
+}
+
+
+type adressType ={
+  street: string;
+  city:string;
+}
+
+type companyType = {
+  name:string;
+}

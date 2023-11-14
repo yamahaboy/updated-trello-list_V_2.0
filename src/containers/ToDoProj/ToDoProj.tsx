@@ -1,8 +1,9 @@
 import FilterTextField from "../FilterTextField/FilterTextField";
+import FullUserInfo from "../FullUserInfo/FullUserInfo";
+import UserPopover from "../Popover/Popover";
 import PostsList from "../PostsList/PostsList";
 import { ToDoForm } from "../ToDoForm/ToDoForm";
 import { ToDoList } from "../ToDoList/ToDoList";
-import UserList from "../UsersList/UsersList";
 import {
   StyledApp,
   MainContentContainer,
@@ -13,8 +14,10 @@ import {
 const ToDoProj = () => {
   return (
     <StyledApp>
+      
       <FilterStylesContainer>
         <FilterTextField />
+        <UserPopover />
       </FilterStylesContainer>
       <MainContentContainer>
         <ListsContainer>
@@ -22,7 +25,8 @@ const ToDoProj = () => {
           <ToDoList />
         </ListsContainer>
         <ListsContainer>
-          <UserList />
+          <FullUserInfo />
+
           <PostsList />
         </ListsContainer>
       </MainContentContainer>

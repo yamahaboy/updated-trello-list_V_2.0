@@ -19,7 +19,7 @@ const FilterTextField: React.FC = () => {
       variant="outlined"
       value={inputValue}
       onChange={handleInputChange}
-      sx={{ width: "75%", marginTop: ".5rem" }}
+      sx={{ width: "70%", marginTop: ".5rem" }}
     />
   );
 };

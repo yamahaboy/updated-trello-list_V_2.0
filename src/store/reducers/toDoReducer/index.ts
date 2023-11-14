@@ -4,6 +4,7 @@ import {
   IToDoForm,
   IToDoPosts,
   IToDoUsers,
+  IToDoFullUsers,
 } from "../../../models/IToDoForm";
 import { ToDoReducerEnum } from "./ActionsType";
 
@@ -16,6 +17,7 @@ type ToDoReducerType = {
   comments: IToDoComments[];
   userfilter: number | null;
   inputData: string | null;
+  fullUsers: IToDoFullUsers[];
 };
 
 const defaultState: ToDoReducerType = {
@@ -27,6 +29,7 @@ const defaultState: ToDoReducerType = {
   comments: [],
   userfilter: null,
   inputData: null,
+  fullUsers: [],
 };
 
 const todoReducer: Reducer<ToDoReducerType> = (
@@ -66,6 +69,8 @@ const todoReducer: Reducer<ToDoReducerType> = (
       return { ...state, userfilter: action.userFilterData };
     case ToDoReducerEnum.Set_Input_Value_Filter:
       return { ...state, inputData: action.inputValue };
+    case ToDoReducerEnum.Get_Full_Users:
+      return { ...state, fullUsers: action.fullUsersdata };
     default:
       return { ...state };
   }

@@ -21,5 +21,8 @@ export const ListsContainer = styled.div`
 
 export const FilterStylesContainer = styled.div`
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap:10px;
   justify-content: center;
 `;

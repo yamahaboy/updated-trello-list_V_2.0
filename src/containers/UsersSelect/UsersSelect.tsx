@@ -12,10 +12,8 @@ type UserSelectProps = {
   onSelectChange: (selectedUserId: number) => void;
 };
 
-const UserSelect: React.FC<UserSelectProps> = ({
-  selectedUser,
-  onSelectChange,
-}) => {
+const UserSelect: React.FC<UserSelectProps> = (props) => {
+  const { selectedUser, onSelectChange } = props;
   const { users } = useAppSelector((state) => state.todoReducer);
 
   const handleUserChange = (event: SelectChangeEvent<number>) => {
@@ -32,8 +30,8 @@ const UserSelect: React.FC<UserSelectProps> = ({
         <MenuItem value={0}>None</MenuItem>
         {users.map((user) => (
           <MenuItem key={user.id} value={user.id}>
-           <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Avatar id={user.id} name={user.name} /> 
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Avatar id={user.id} name={user.name} />
               <span style={{ marginLeft: "8px" }}>{user.name}</span>
             </Box>
           </MenuItem>
